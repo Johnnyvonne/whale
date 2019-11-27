@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+zuul:
+  # 禁止传递某些敏感header，默认Cookie,Set-Cookie,Authorization都不传，所以后续请求认证会失败
+  sensitive-headers:
+  routes:
+    auth:
+      path: /auth/**
+      serviceId: auth
+    employee:
+      path: /employee/**
+      serviceId: employee

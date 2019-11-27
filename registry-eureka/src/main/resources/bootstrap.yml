@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: registry
+  cloud:
+    config:
+      uri: http://localhost:9020
+      fail-fast: true
+---
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    # 是否要注册到其他Eureka Server实例
+    registerWithEureka: false
+    # 是否要从其他Eureka Server实例获取数据
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    # 自我保护模式是一种应对网络异常的安全保护措施。它的架构哲学是宁可同时保留所有微服务（健康的微服务和不健康的微服务都会保留），
+    # 也不盲目注销任何健康的微服务。使用自我保护模式，可以让Eureka集群更加的健壮、稳定。
+    enable-self-preservation: true
